@@ -80,3 +80,8 @@ As long as there is a corresponding function definition in your assistant (see h
 ## Interfaces
 
 Some pre-written interfaces, such as a Slack Interface, may be configured in the `airistotle.interfaces` directory. 
+
+
+#### Notes
+
+Airistotle uses Haystack for a basic web_search function, which is incredibly overkill. You can remove this function if you'd like to avoid the Haystack dependency. Alternatively, you can use Haystack for additional extensibility via plugins.
