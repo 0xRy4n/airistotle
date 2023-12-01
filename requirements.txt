@@ -1,0 +1,10 @@
+openai[beta]
+farm-haystack[weaviate]
+farm-haystack[preprocessing]
+farm-haystack[inference]
+python-dotenv
+colorama
+slack_bolt
+google-api-python-client
+tinydb
+backoff
