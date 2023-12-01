@@ -1,4 +1,4 @@
-# airistotle
+# Airistotle
 
 Basic implementation of the assistants API. Supports easy extensibility with function calls.
 
