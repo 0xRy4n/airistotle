@@ -27,6 +27,12 @@ print(response)
 >>> 2+2 equals 4.
 ```
 
+For the CLI interface, simply import it from an interactive shell:
+
+```python
+from airistotle.interfaces import cli
+```
+
 ## Plugins
 
 Plugins are defined in `airistotle.plugins`.

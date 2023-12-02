@@ -18,7 +18,7 @@ def get_default(value: str) -> str:
 
 LOG_LEVEL = int(env.get("AIRISTOTLE_LOG_LEVEL", get_default("5")) or 10)
 OPENAI_API_KEY = str(env.get("AIRISTOTLE_OPENAI_API_KEY", get_default("debug")))
-GOOGLE_API_KEY = env.get("ARISTOTLE_GOOGLE_API_KEY", get_default("debug"))
+GOOGLE_API_KEY = env.get("AIRISTOTLE_GOOGLE_API_KEY", get_default("debug"))
 GOOGLE_CSE_ID = env.get("AIRISTOTLE_GOOGLE_CSE_ID", get_default("debug"))
 SERPER_API_KEY = env.get("AIRISTOTLE_SERPER_API_KEY", get_default("debug"))
 SLACK_BOT_TOKEN = env.get("AIRISTOTLE_SLACK_BOT_TOKEN", get_default("debug"))
@@ -27,7 +27,7 @@ SLACK_SIGNING_SECRET = env.get("AIRISTOTLE_SLACK_SIGNING_SECRET", get_default("d
 ASSISTANT_ID = str(env.get("AIRISTOTLE_ASSISTANT_ID", get_default("debug")))
 
 DB_LOCATION = Path(__file__).parent / "storage" / "database.json"
-LOG_FILE_LOCATION = str(Path(__file__).parent.parent / "AIRISTOTLE.log")
+LOG_FILE_LOCATION = str(Path(__file__).parent.parent / "airistotle.log")
 
 LOGGER = GlobalLogger("AIRISTOTLE", log_file=LOG_FILE_LOCATION, level=LOG_LEVEL)
 
