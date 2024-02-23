@@ -6,7 +6,7 @@ import dotenv
 
 # AIRISTOTLE
 from .logger import GlobalLogger
-from .plugins import WebSearch
+from .plugins import WebSearch, Dalle 
 
 
 env = dotenv.dotenv_values(".env")
@@ -37,4 +37,5 @@ AVAILABLE_PLUGINS = {
         google_api_key=GOOGLE_API_KEY,
         google_cse_id=GOOGLE_CSE_ID,
     ),
+    Dalle.name: Dalle(OPENAI_API_KEY),
 }
