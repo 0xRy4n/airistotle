@@ -4,7 +4,9 @@ from pathlib import Path
 # Third-party
 import dotenv
 import pathlib
-import os.environ as env
+import os
+
+
 
 # AIRISTOTLE
 from .logger import GlobalLogger
@@ -12,6 +14,8 @@ from .plugins import WebSearch, Dalle
 
 
 dotenv.load_dotenv(Path(__file__).parent.parent / ".env", override=True)
+env = os.environ 
+
 DEBUG = env.get("DEBUG", False)
 
 
