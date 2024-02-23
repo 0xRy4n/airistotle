@@ -3,13 +3,15 @@ from pathlib import Path
 
 # Third-party
 import dotenv
+import pathlib
+import os.environ as env
 
 # AIRISTOTLE
 from .logger import GlobalLogger
 from .plugins import WebSearch, Dalle 
 
 
-env = dotenv.dotenv_values(".env")
+dotenv.load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 DEBUG = env.get("DEBUG", False)
 
 
