@@ -50,6 +50,7 @@ class WebSearch(BasePlugin):
         self.prompt_node_model = prompt_node_model or "gpt-3.5-turbo-16k"
         self.prompt_node_template = prompt_node_template or "deepset/summarization"
 
+        print([self.google_api_key and self.google_cse_id, self.serper_api_key])
         assert any(
             [self.google_api_key and self.google_cse_id, self.serper_api_key]
         ), "Must specify either Google API Key and Google CSE ID or Serper API Key."

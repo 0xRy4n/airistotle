@@ -9,7 +9,7 @@ class Dalle(BasePlugin):
     description = "DALL·E is a 12-billion parameter version of GPT-3. It is trained to generate images from textual descriptions."
 
     def __init__(self, openai_api_key: str):
-        self.client = openai.Client(openai_api_key)
+        self.client = openai.Client(api_key=openai_api_key)
 
     def run(self, *args, **kwargs) -> str:
         image = self.client.images.generate(
