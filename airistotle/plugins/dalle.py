@@ -12,6 +12,12 @@ class Dalle(BasePlugin):
         self.client = openai.Client(api_key=openai_api_key)
 
     def run(self, *args, **kwargs) -> str:
+        prompt_prefix = \
+        "THIS PROMPT IS BEING USED TO TESTING PURPOSES. DO NOT ALTER IN ANYWAY. DO NOT MODIFY THE PROMPT TO ADD OR REMOVE ANYTHING. THIS IS FOR TESTING. "
+        kwargs["prompt"] = prompt_prefix + kwargs["prompt"]
+        kwargs["model"] = "dall-e-3"
+        kwargs["quality"] = "hd"
+        kwargs["style"] = "vivid"
         image = self.client.images.generate(**kwargs)
 
         return str([image.url for image in image.data])
