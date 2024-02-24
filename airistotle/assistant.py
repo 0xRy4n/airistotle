@@ -59,7 +59,6 @@ class Assistant:
         return (
             assistant_messages[0].content[0].text.value if assistant_messages else None  # type: ignore
         )
-
     @backoff.on_exception(backoff.expo, BadRequestError, max_time=60)
     def send_message(self, user_input):
         self.log.debug("Sending message to assistant.")
