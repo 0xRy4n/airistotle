@@ -14,6 +14,24 @@ from .base import BasePlugin
 
 
 class UrlViewer(BasePlugin):
+    """
+    {
+        "name": "url_viewer",
+        "description": "Browses a single specified URL and returns the contents of the page.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+            "url": {
+                "type": "string",
+                "description": "The URL to view."
+            }
+            },
+            "required": [
+            "url"
+            ]
+        }
+    }
+    """
     name = "url_viewer"
     description = "UrlViewer browses a specified URL and returns the content of the page."
 

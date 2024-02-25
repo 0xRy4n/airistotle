@@ -12,6 +12,24 @@ from ..logger import GlobalLogger
 
 
 class WebSearch(BasePlugin):
+    """
+    {
+        "name": "web_search",
+        "description": "Perform a web search and retrieve the contents from the top results. Use this when ever you are unsure of an answer and need more information. Use it to supplement your own knowledge, not replace it.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+            "query": {
+                "type": "string",
+                "description": "The query you want to search for."
+            }
+            },
+            "required": [
+            "query"
+            ]
+        }
+    }
+    """
     name = "web_search"
     description = "Searches the web for the query and returns the top results."
 
