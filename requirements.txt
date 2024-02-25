@@ -8,3 +8,6 @@ slack_bolt
 google-api-python-client
 tinydb
 backoff
+selenium
+html2text
+bs4

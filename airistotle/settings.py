@@ -6,11 +6,9 @@ import dotenv
 import pathlib
 import os
 
-
-
 # AIRISTOTLE
 from .logger import GlobalLogger
-from .plugins import WebSearch, Dalle 
+from .plugins import WebSearch, Dalle, UrlViewer
 
 
 dotenv.load_dotenv(Path(__file__).parent.parent / ".env", override=True)
@@ -44,4 +42,5 @@ AVAILABLE_PLUGINS = {
         google_cse_id=GOOGLE_CSE_ID,
     ),
     Dalle.name: Dalle(OPENAI_API_KEY),
+    UrlViewer.name: UrlViewer(),
 }

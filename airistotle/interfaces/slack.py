@@ -65,6 +65,24 @@ def handle_app_mention(event, say):
     if not posted_image:
         post_message(response, channel_id, thread_ts, say)
 
+
+@app.event("message")
+def handle_message(event, say, context):
+    # Filter out messages that are not direct messages
+    if event.get("channel_type") == "im":
+        log.debug("Handling DM.")
+        thread_ts = event.get("ts")  # In DMs, the thread_ts is just the timestamp of the message
+        channel_id = event['channel']
+
+        # Direct messages don't require removal of @ mention, so we can use the text directly
+        prompt = event.get("text", "")
+
+        response = get_response_from_assistant(prompt, thread_ts)
+        posted_image = process_image_links(response, channel_id, thread_ts)
+        if not posted_image:
+            post_message(response, channel_id, thread_ts, say)
+
+
 def get_response_from_assistant(prompt, thread_ts):
     mappings = db.search(ThreadMap.slack_thread_id == thread_ts)
     assistant = Assistant(OPENAI_API_KEY, ASSISTANT_ID, thread_id=mappings[0]["openai_thread_id"]) if mappings else Assistant(OPENAI_API_KEY, ASSISTANT_ID)
