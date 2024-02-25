@@ -24,7 +24,9 @@ class UrlViewer(BasePlugin):
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        time.sleep(1)
         driver.get(url)
+        time.sleep(1)
         text = html2text.html2text(driver.page_source)
 
         driver.quit()
