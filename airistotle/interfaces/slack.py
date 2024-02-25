@@ -85,6 +85,7 @@ def handle_message(event, say, context):
 
 def get_response_from_assistant(prompt, thread_ts):
     mappings = db.search(ThreadMap.slack_thread_id == thread_ts)
+    log.debug(f"Found mappings: {mappings}")
     assistant = Assistant(OPENAI_API_KEY, ASSISTANT_ID, thread_id=mappings[0]["openai_thread_id"]) if mappings else Assistant(OPENAI_API_KEY, ASSISTANT_ID)
     if not mappings:
         db.insert({"slack_thread_id": thread_ts, "openai_thread_id": assistant.thread_id, "last_message_time": time.time()})
