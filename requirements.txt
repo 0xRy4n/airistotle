@@ -9,5 +9,6 @@ google-api-python-client
 tinydb
 backoff
 selenium
+webdriver-manager
 html2text
 bs4
