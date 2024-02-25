@@ -1,3 +1,4 @@
+import backoff
 import re
 import time
 import requests
@@ -82,7 +83,7 @@ def handle_message(event, say, context):
         if not posted_image:
             post_message(response, channel_id, thread_ts, say)
 
-
+@backoff.on_exception(backoff.expo, ValueError, max_time=30)
 def get_response_from_assistant(prompt, thread_ts):
     mappings = db.search(ThreadMap.slack_thread_id == thread_ts)
     log.debug(f"Found mappings: {mappings}")
