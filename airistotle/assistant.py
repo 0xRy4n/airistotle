@@ -18,6 +18,7 @@ class Assistant:
         self.client = openai.Client(api_key=openai_api_key)
         self.assistant = self.client.beta.assistants.retrieve(assistant_id=assistant_id)
         self.log = GlobalLogger("Assistant")
+        self.function_calls = []
 
         # If a thread_id is provided, use it, otherwise create a new thread
         if thread_id:
@@ -49,6 +50,10 @@ class Assistant:
             tool_outputs=[{"tool_call_id": tool_call.id, "output": result}],
         )
 
+        self.function_calls.append(
+            {"function": func.name, "params": params, "result": result}
+        )
+
     def get_response(self):
         self.log.debug("Getting latest assistant message.")
         messages = self.client.beta.threads.messages.list(thread_id=self.thread_id).data
@@ -59,6 +64,7 @@ class Assistant:
         return (
             assistant_messages[0].content[0].text.value if assistant_messages else None  # type: ignore
         )
+
     @backoff.on_exception(backoff.expo, BadRequestError, max_time=120)
     def send_message(self, user_input):
         self.log.debug("Sending message to assistant.")
@@ -87,3 +93,12 @@ class Assistant:
             return self.get_response()
         else:
             raise Exception(f"Run ended with status: {run.status}")
+
+    def remove_last_message(self):
+        self.log.debug("Removing last message from assistant.")
+        messages = self.client.beta.threads.messages.list(thread_id=self.thread_id).data
+        last_message = messages[-1]
+        self.client.beta.threads.messages.delete(
+            thread_id=self.thread_id, message_id=last_message.id
+        )
+        self.log.debug(f"Removed message: {last_message.id}")
